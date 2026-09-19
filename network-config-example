@@ -1,0 +1,42 @@
+# Fiberhome GPON ONU Router Network Configuration
+# Location: /etc/config/network (on the router)
+# This shows ENABLED WAN configuration
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.255.255.0'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+# ===== UNCOMMENT/ENABLE THIS SECTION FOR WAN =====
+config interface 'wan'
+	option ifname 'eth1'
+	option proto 'dhcp'
+	option type 'bridge'
+
+# If your ISP requires VLAN tagging (e.g., VLAN 2):
+# config interface 'wan'
+# 	option ifname 'eth1.2'
+# 	option proto 'dhcp'
+
+# For static IP configuration:
+# config interface 'wan'
+# 	option ifname 'eth1'
+# 	option proto 'static'
+# 	option ipaddr '203.x.x.x'
+# 	option netmask '255.255.255.0'
+# 	option gateway 'x.x.x.x'
+# 	option dns '8.8.8.8 8.8.4.4'
+
+# ===== WAN6 for IPv6 (optional) =====
+# config interface 'wan6'
+# 	option ifname 'eth1'
+# 	option proto 'dhcpv6'
